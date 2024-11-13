@@ -1,0 +1,20 @@
+<h1>PDF Form Editor</h1>
+<!-- <pdf-viewer [src]="pdfSrc" [render-text]="true" (error)="onError($event)" style="display: block;">
+</pdf-viewer> -->
+
+<!-- <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="true" (after-load-complete)="loadCompleted($event)" >
+</pdf-viewer>
+<button (click)="getFieldValues()">Submit</button> -->
+
+<div>
+    <pdf-viewer [src]="pdfSrc" (after-load-complete)="loadCompleted($event)"></pdf-viewer>
+  
+    <div *ngFor="let field of _formFields" hidden>
+      <label>{{ field.name }}</label>
+      <input [type]="field.type === 'text' ? 'text' : (field.type === 'CHECKBOX' ? 'checkbox' : 'radio')"
+             [id]="field.id" 
+             [(ngModel)]="field.value" />
+    </div>
+  
+    <button (click)="getFieldValues()">Submit</button>
+  </div>
